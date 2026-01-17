@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ultimatum Flash — Launch</title>
 
-  <!-- Keep index.html for trust/SEO. This page is for conversion/branding. -->
   <meta name="robots" content="noindex,follow" />
   <meta name="description" content="Ultimatum Flash — offline file transfer. Local Wi-Fi + QR pairing. Android ↔ Android and Android ↔ PC. No cloud, no accounts." />
 
@@ -43,7 +42,6 @@
       overflow-x:hidden;
     }
 
-    /* subtle HUD grid */
     .grid{
       position:fixed; inset:0;
       pointer-events:none;
@@ -95,17 +93,14 @@
     }
     .chip:hover{ transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.06); }
 
-    /* === SYMMETRY FIX (core) === */
     .hero{
       margin-top: 20px;
       display:grid;
-      grid-template-columns: 1fr 1fr;     /* perfect balance */
+      grid-template-columns: 1fr 1fr;
       gap: 18px;
-      align-items:stretch;               /* same height */
+      align-items:stretch;
     }
-    @media (max-width: 980px){
-      .hero{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 980px){ .hero{ grid-template-columns: 1fr; } }
 
     .panel{
       border:1px solid var(--stroke);
@@ -114,8 +109,8 @@
       box-shadow: var(--shadow);
       position:relative;
       overflow:hidden;
-      min-height: 540px;                 /* forces symmetry */
-      display:flex;                       /* so inner can align */
+      min-height: 540px;
+      display:flex;
     }
     .panel:before{
       content:"";
@@ -202,7 +197,6 @@
       color: rgba(234,240,255,.90);
     }
 
-    /* Feature cards */
     .below{
       margin-top: 14px;
       display:grid;
@@ -230,12 +224,11 @@
     .fcard b{ display:block; font-size: 13px; letter-spacing:.2px; margin-bottom: 6px; }
     .fcard p{ margin:0; font-size: 12.8px; color: var(--muted); }
 
-    /* === ORBITAL PANEL: CENTERED LIKE A REAL APP PREVIEW === */
     .orbitalPanel .panel-inner{
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 22px; /* same as left */
+      padding: 22px;
     }
 
     .orb{
@@ -271,31 +264,6 @@
       pointer-events:none;
     }
 
-    /* Rings */
-    .ringA, .ringB{
-      position:absolute;
-      left:50%; top:58%;
-      transform: translate(-50%, -50%);
-      border-radius: 999px;
-      pointer-events:none;
-    }
-    .ringA{
-      width: 74%;
-      height: 74%;
-      border: 2px solid rgba(255,255,255,.10);
-      box-shadow:
-        0 0 0 1px rgba(85,232,255,.10),
-        0 0 40px rgba(85,232,255,.10),
-        0 0 60px rgba(139,91,255,.08);
-    }
-    .ringB{
-      width: 92%;
-      height: 92%;
-      border: 1px solid rgba(255,255,255,.06);
-      opacity:.9;
-    }
-
-    /* Caption */
     .orbCaption{
       position:absolute;
       left:22px; top:22px;
@@ -320,7 +288,56 @@
       color: rgba(234,240,255,.72);
     }
 
-    /* HUB */
+    .ringA, .ringB{
+      position:absolute;
+      left:50%; top:58%;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      pointer-events:none;
+    }
+    .ringA{
+      width: 74%;
+      height: 74%;
+      border: 2px solid rgba(255,255,255,.10);
+      box-shadow:
+        0 0 0 1px rgba(85,232,255,.10),
+        0 0 40px rgba(85,232,255,.10),
+        0 0 60px rgba(139,91,255,.08);
+    }
+    .ringB{
+      width: 92%;
+      height: 92%;
+      border: 1px solid rgba(255,255,255,.06);
+      opacity:.9;
+    }
+
+    .energy{
+      position:absolute;
+      left:50%; top:58%;
+      width: 92%;
+      height: 92%;
+      transform: translate(-50%,-50%);
+      border-radius: 999px;
+      background:
+        conic-gradient(
+          from 0deg,
+          rgba(85,232,255,.00),
+          rgba(85,232,255,.12),
+          rgba(139,91,255,.10),
+          rgba(255,79,216,.06),
+          rgba(85,232,255,.00)
+        );
+      filter: blur(14px);
+      opacity:.50;
+      animation: slowspin 18s linear infinite;
+      pointer-events:none;
+      z-index: 2;
+    }
+    @keyframes slowspin{
+      from{ transform: translate(-50%,-50%) rotate(0deg); }
+      to{ transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
     .hub{
       position:absolute;
       left:50%; top:60%;
@@ -364,60 +381,36 @@
     .hub b{ font-size: 14px; letter-spacing:.3px; }
     .hub span{ font-size: 12px; color: rgba(234,240,255,.74); }
 
-    /* === ROTATION: SATELLITES ROTATE, CONTENT STAYS UPRIGHT === */
+    /* === 12 ITEMS: 360/12 = 30deg, perfect symmetry === */
+    .orbitWrap{
+      position:absolute;
+      left:50%;
+      top:58%;
+      transform: translate(-50%,-50%);
+      width: 74%;
+      height: 74%;
+      z-index: 5;
+      pointer-events:none;
+    }
+
     .satLayer{
       position:absolute;
-      inset: 0;
-      z-index: 5;
-      animation: orbitSpin 48s linear infinite; /* subtle */
-      transform-origin: 50% 58%;
+      inset:0;
+      transform-origin: 50% 50%;
+      animation: orbitSpin 54s linear infinite;
+      pointer-events:none;
     }
     @keyframes orbitSpin{
       from{ transform: rotate(0deg); }
       to{ transform: rotate(360deg); }
     }
-    .satLayer .sat{
-      animation: keepUpright 48s linear infinite; /* counter-rotate */
-      transform-origin: 50% 58%;
-    }
-    @keyframes keepUpright{
-      from{ transform: translate(-50%,-50%) rotate(0deg); }
-      to{ transform: translate(-50%,-50%) rotate(-360deg); }
-    }
 
-    /* ENERGY stays as micro movement */
-    .energy{
-      position:absolute;
-      left:50%; top:58%;
-      width: 92%;
-      height: 92%;
-      transform: translate(-50%,-50%);
-      border-radius: 999px;
-      background:
-        conic-gradient(
-          from 0deg,
-          rgba(85,232,255,.00),
-          rgba(85,232,255,.12),
-          rgba(139,91,255,.10),
-          rgba(255,79,216,.06),
-          rgba(85,232,255,.00)
-        );
-      filter: blur(14px);
-      opacity:.50;
-      animation: slowspin 18s linear infinite;
-      pointer-events:none;
-      z-index: 2;
-    }
-    @keyframes slowspin{
-      from{ transform: translate(-50%,-50%) rotate(0deg); }
-      to{ transform: translate(-50%,-50%) rotate(360deg); }
-    }
-
-    /* Satellites */
     .sat{
       position:absolute;
-      width: 86px;
-      height: 86px;
+      left:50%;
+      top:50%;
+      width: 82px;
+      height: 82px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
@@ -430,15 +423,31 @@
       text-decoration:none;
       color: var(--txt);
       user-select:none;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      transition: filter .15s ease, border-color .15s ease, background .15s ease;
+      pointer-events:auto;
+      --a: 0deg;
+      --rad: 166px; /* desktop radius */
+      transform:
+        rotate(var(--a))
+        translate(var(--rad))
+        rotate(calc(-1 * var(--a)));
+      transform-origin: 0 0;
     }
     .sat:hover{
-      transform: translate(-50%,-50%) rotate(0deg) translateY(-2px) scale(1.03); /* keeps stable on hover */
+      filter: brightness(1.06);
       border-color: rgba(255,255,255,.26);
       background: rgba(255,255,255,.08);
     }
+
+    @media (max-width: 1200px){
+      .sat{ --rad: 154px; }
+    }
+    @media (max-width: 520px){
+      .sat{ width: 72px; height: 72px; --rad: 128px; }
+    }
+
     .sat .badge{
-      width: 42px; height: 42px;
+      width: 40px; height: 40px;
       border-radius: 999px;
       display:flex; align-items:center; justify-content:center;
       border: 1px solid rgba(255,255,255,.12);
@@ -455,9 +464,13 @@
       white-space:nowrap;
       text-shadow: 0 8px 20px rgba(0,0,0,.65);
       opacity:.92;
+      pointer-events:none;
+    }
+    @media (max-width: 520px){
+      .sat .badge{ width: 36px; height: 36px; }
+      .sat .lbl{ font-size: 11px; bottom: -16px; }
     }
 
-    /* Color variants */
     .cDocs .badge{ background: rgba(85,232,255,.18); }
     .cZip  .badge{ background: rgba(255,79,216,.16); }
     .cApk  .badge{ background: rgba(46,242,166,.14); }
@@ -468,18 +481,8 @@
     .cPhotos .badge{ background: rgba(139,91,255,.10); }
     .cVideos .badge{ background: rgba(255,79,216,.10); }
     .cMusic .badge{ background: rgba(255,184,107,.10); }
-
-    /* Positions (must include translate(-50%,-50%) because we counter-rotate) */
-    .pDocs   { left: 84%; top: 58%; transform: translate(-50%,-50%); }
-    .pZip    { left: 72%; top: 40%; transform: translate(-50%,-50%); }
-    .pPc     { left: 78%; top: 76%; transform: translate(-50%,-50%); }
-    .pStatus { left: 56%; top: 86%; transform: translate(-50%,-50%); }
-    .pMp3    { left: 44%; top: 86%; transform: translate(-50%,-50%); }
-    .pVault  { left: 26%; top: 78%; transform: translate(-50%,-50%); }
-    .pPhotos { left: 18%; top: 58%; transform: translate(-50%,-50%); }
-    .pVideos { left: 22%; top: 40%; transform: translate(-50%,-50%); }
-    .pMusic  { left: 36%; top: 30%; transform: translate(-50%,-50%); }
-    .pApk    { left: 50%; top: 28%; transform: translate(-50%,-50%); }
+    .cWa .badge{ background: rgba(46,242,166,.10); }
+    .cPlay .badge{ background: rgba(85,232,255,.10); }
 
     footer{
       margin-top: 22px;
@@ -494,17 +497,9 @@
     footer a{ color: var(--muted); text-decoration:none; }
     footer a:hover{ color: var(--txt); }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       .chip,.btn,.sat{ transition:none !important; }
       .energy,.satLayer{ animation:none !important; }
-    }
-
-    @media (max-width: 520px){
-      .panel{ min-height: unset; }
-      .sat{ width: 76px; height: 76px; }
-      .sat .badge{ width: 38px; height: 38px; }
-      .sat .lbl{ font-size: 11px; bottom: -16px; }
     }
   </style>
 </head>
@@ -606,7 +601,6 @@
               <div class="ringB" aria-hidden="true"></div>
               <div class="ringA" aria-hidden="true"></div>
 
-              <!-- Center HUB -->
               <a class="hub" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare"
                  target="_blank" rel="nofollow noopener" title="Open on Google Play">
                 <div class="hubIcon" aria-hidden="true">
@@ -619,111 +613,135 @@
                 <span>WA Hub</span>
               </a>
 
-              <!-- Satellites layer (rotates) -->
-              <div class="satLayer" aria-hidden="false">
-                <a class="sat cDocs pDocs" href="./index.html" title="Docs">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M6 18h12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">Docs</div>
-                </a>
+              <div class="orbitWrap">
+                <div class="satLayer">
+                  <!-- 12 items => 30deg each -->
+                  <a class="sat cMusic" style="--a: 0deg" href="./index.html" title="Music">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18V6l12-2v12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M7 20a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
+                        <path d="M19 18a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">Music</div>
+                  </a>
 
-                <a class="sat cZip pZip" href="./index.html" title="ZIP transfers">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M7 3h10v18H7V3Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M10 7h4M10 11h4M10 15h4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">ZIP</div>
-                </a>
+                  <a class="sat cApk" style="--a: 30deg" href="./index.html" title="APK">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M8 6l-1-2M16 6l1-2" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                        <path d="M7 8h10l-1 12H8L7 8Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M9 12v4M15 12v4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">APK</div>
+                  </a>
 
-                <a class="sat cPc pPc" href="./index.html" title="PC Connect">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M4 5h16v10H4V5Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M8 19h8" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      <path d="M12 15v4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">PC</div>
-                </a>
+                  <a class="sat cZip" style="--a: 60deg" href="./index.html" title="ZIP">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M7 3h10v18H7V3Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M10 7h4M10 11h4M10 15h4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">ZIP</div>
+                  </a>
 
-                <a class="sat cStatus pStatus" href="./index.html" title="Status tools">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M4 13l4-4 4 4 8-8" stroke="rgba(234,240,255,.90)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M4 20h16" stroke="rgba(234,240,255,.70)" stroke-width="1.6" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">Status</div>
-                </a>
+                  <a class="sat cDocs" style="--a: 90deg" href="./index.html" title="Docs">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M6 18h12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">Docs</div>
+                  </a>
 
-                <a class="sat cMp3 pMp3" href="./index.html" title="MP3 tool">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M9 18V6l12-2v12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M7 20a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
-                      <path d="M19 18a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">MP3</div>
-                </a>
+                  <a class="sat cPc" style="--a: 120deg" href="./index.html" title="PC">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 5h16v10H4V5Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M8 19h8" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                        <path d="M12 15v4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">PC</div>
+                  </a>
 
-                <a class="sat cVault pVault" href="./privacy.html" title="Vault & privacy">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      <path d="M6 11h12v10H6V11Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">Vault</div>
-                </a>
+                  <a class="sat cStatus" style="--a: 150deg" href="./index.html" title="Status">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 13l4-4 4 4 8-8" stroke="rgba(234,240,255,.90)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 20h16" stroke="rgba(234,240,255,.70)" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">Status</div>
+                  </a>
 
-                <a class="sat cPhotos pPhotos" href="./index.html" title="Photos">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M4 7h16v12H4V7Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M8 11l2.5 3 2-2 3.5 4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M9 10.5a.8.8 0 1 1 0-1.6a.8.8 0 0 1 0 1.6Z" fill="rgba(234,240,255,.90)"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">Photos</div>
-                </a>
+                  <a class="sat cMp3" style="--a: 180deg" href="./index.html" title="MP3">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18V6l12-2v12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M7 20a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">MP3</div>
+                  </a>
 
-                <a class="sat cVideos pVideos" href="./index.html" title="Videos">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M4 7h12v10H4V7Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M16 10l4-2v8l-4-2v-4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">Videos</div>
-                </a>
+                  <a class="sat cVault" style="--a: 210deg" href="./privacy.html" title="Vault">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                        <path d="M6 11h12v10H6V11Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">Vault</div>
+                  </a>
 
-                <a class="sat cMusic pMusic" href="./index.html" title="Music">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M8 19V7l12-2v12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M6 20a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">Music</div>
-                </a>
+                  <a class="sat cPhotos" style="--a: 240deg" href="./index.html" title="Photos">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 7h16v12H4V7Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M8 11l2.5 3 2-2 3.5 4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 10.5a.8.8 0 1 1 0-1.6a.8.8 0 0 1 0 1.6Z" fill="rgba(234,240,255,.90)"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">Photos</div>
+                  </a>
 
-                <a class="sat cApk pApk" href="./index.html" title="APK">
-                  <div class="badge" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M8 6l-1-2M16 6l1-2" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      <path d="M7 8h10l-1 12H8L7 8Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M9 12v4M15 12v4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="lbl">APK</div>
-                </a>
+                  <a class="sat cVideos" style="--a: 270deg" href="./index.html" title="Videos">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 7h12v10H4V7Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M16 10l4-2v8l-4-2v-4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">Videos</div>
+                  </a>
+
+                  <a class="sat cWa" style="--a: 300deg" href="./index.html" title="WA Hub">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21c5 0 9-4 9-9s-4-9-9-9-9 4-9 9c0 1.6.4 3.1 1.1 4.4L3 21l4.8-1.1C9 20.6 10.5 21 12 21Z"
+                              stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M9.2 9.6c.2 2 2.6 4.2 4.6 4.6" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">WA Hub</div>
+                  </a>
+
+                  <a class="sat cPlay" style="--a: 330deg"
+                     href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare"
+                     target="_blank" rel="nofollow noopener" title="Google Play">
+                    <div class="badge" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M8 5v14l11-7L8 5Z" stroke="rgba(234,240,255,.90)" stroke-width="1.8" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="lbl">Play</div>
+                  </a>
+                </div>
               </div>
 
             </div>
