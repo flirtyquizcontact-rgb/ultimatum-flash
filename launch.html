@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ultimatum Share — Launch</title>
+  <title>Ultimatum Flash — Launch</title>
 
-  <!-- Keep index.html for trust/SEO. This page is for conversion/branding. -->
+  <!-- index.html stays SEO/trust. This is the "futuristic launch" page. -->
   <meta name="robots" content="noindex,follow" />
-  <meta name="description" content="Ultimatum Flash — futuristic offline file transfer. Local Wi-Fi + QR pairing. Android ↔ Android and Android ↔ PC. No cloud, no accounts." />
+  <meta name="description" content="Ultimatum Flash — offline local Wi-Fi file transfer with QR pairing. Android ↔ Android and Android ↔ PC. No cloud, no accounts." />
 
   <style>
     :root{
@@ -15,7 +15,6 @@
       --bg1:#0A1020;
 
       --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
       --stroke: rgba(255,255,255,.14);
       --stroke2: rgba(255,255,255,.22);
 
@@ -23,19 +22,19 @@
       --muted: rgba(234,240,255,.72);
       --muted2: rgba(234,240,255,.55);
 
-      --accent:#4DEBFF;
-      --accent2:#8A5CFF;
-      --good:#38F2A6;
-      --warn:#FFB86B;
+      --cyan:#4DEBFF;
+      --violet:#8A5CFF;
+      --green:#38F2A6;
+      --warm:#FFB86B;
 
       --shadow: 0 20px 70px rgba(0,0,0,.55);
       --radius: 18px;
 
-      /* Orbital tuning */
-      --orb-size: 430px;         /* overall module size */
-      --orb-radius: 155px;       /* distance from center to satellites */
-      --sat-size: 58px;          /* satellite tile size */
-      --spin-sec: 22s;           /* orbit speed */
+      /* ORBITAL: tuned smaller + stable center */
+      --orb-size: 420px;       /* module size */
+      --orb-radius: 140px;     /* orbit radius from center */
+      --sat-size: 52px;        /* satellite tile size */
+      --spin-sec: 20s;         /* orbit speed */
     }
 
     *{ box-sizing:border-box; }
@@ -52,7 +51,6 @@
       overflow-x:hidden;
     }
 
-    /* Subtle grid */
     .grid{
       position:fixed; inset:0;
       pointer-events:none;
@@ -65,6 +63,7 @@
     }
 
     .wrap{ max-width:1120px; margin:0 auto; padding: 26px 16px 70px; }
+
     .topbar{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
       padding: 10px 8px;
@@ -89,9 +88,7 @@
     .brand strong{ font-size:14px; letter-spacing:.4px; }
     .brand span{ display:block; font-size:12px; color:var(--muted2); margin-top:1px; }
 
-    .nav{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
+    .nav{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
     .chip{
       text-decoration:none; color:var(--muted);
       border:1px solid var(--stroke);
@@ -136,10 +133,7 @@
     }
     .panel-inner{ position:relative; padding: 22px; }
 
-    .kicker{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-bottom: 10px;
-    }
+    .kicker{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom: 10px; }
     .tag{
       font-size: 12px;
       border:1px solid var(--stroke);
@@ -165,10 +159,7 @@
       max-width: 62ch;
     }
 
-    .ctaRow{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top: 16px;
-    }
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top: 16px; }
     .btn{
       appearance:none; border:1px solid var(--stroke);
       background: rgba(255,255,255,.06);
@@ -189,7 +180,7 @@
     }
     .btn .dot{
       width:10px; height:10px; border-radius:999px;
-      background: var(--accent);
+      background: var(--cyan);
       box-shadow: 0 0 0 4px rgba(77,235,255,.12);
     }
     .btn.secondary .dot{ background: rgba(255,255,255,.75); box-shadow:none; }
@@ -235,12 +226,27 @@
     .card b{ display:block; font-size: 13px; letter-spacing:.2px; margin-bottom: 6px; }
     .card p{ margin:0; font-size: 12.8px; color: var(--muted); }
 
-    /* ORBITAL 2.0 (math-perfect circle) */
-    .orbital{
-      min-height: 420px;
+    /* ORBITAL MODULE */
+    .orbital{ min-height: 420px; display:flex; align-items:center; justify-content:center; }
+    .orb-header{
       display:flex;
       align-items:center;
-      justify-content:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .orb-title{ display:flex; flex-direction:column; gap: 3px; }
+    .orb-title b{ font-size: 13px; letter-spacing:.2px; }
+    .orb-title span{ font-size: 12px; color: var(--muted2); }
+
+    .pillRow{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .pill{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
     }
 
     .orb-wrap{
@@ -252,16 +258,16 @@
       filter: drop-shadow(0 30px 65px rgba(0,0,0,.55));
     }
 
-    .ring2{
-      position:absolute; inset: 5%;
+    .ringOuter{
+      position:absolute; inset: 6%;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.09);
       opacity: .9;
     }
-    .ring{
-      position:absolute; inset: 13%;
+    .ringInner{
+      position:absolute; inset: 14%;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.14);
       background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 64%);
       opacity: .95;
     }
@@ -270,13 +276,13 @@
       position:absolute;
       left: 50%; top: 50%;
       transform: translate(-50%,-50%);
-      width: 46%;
+      width: 48%;
       aspect-ratio: 1/1;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.20);
       background:
         radial-gradient(circle at 35% 25%, rgba(255,255,255,.18), transparent 55%),
-        radial-gradient(circle at 50% 55%, rgba(77,235,255,.18), transparent 60%),
+        radial-gradient(circle at 50% 55%, rgba(77,235,255,.16), transparent 62%),
         radial-gradient(circle at 70% 70%, rgba(138,92,255,.14), transparent 65%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       display:flex;
@@ -291,26 +297,27 @@
     .core b{ font-size: 15px; letter-spacing:.25px; }
     .core span{ font-size:12px; color: var(--muted); }
 
-    /* Orbit group rotates around center */
+    /* CRITICAL FIX:
+       orbit fills the whole wrap, rotates around exact center */
     .orbit{
       position:absolute;
-      left: 50%; top: 50%;
-      width: 0; height: 0;
-      transform: translate(-50%,-50%);
+      inset:0;
+      border-radius:999px;
+      transform-origin: 50% 50%;
       animation: spin var(--spin-sec) linear infinite;
       z-index: 2;
     }
 
-    /* Each satellite placed with polar transform:
-       rotate(angle) translate(radius) then counter-rotate(-angle) so it stays upright */
+    /* Each sat is anchored at center (50/50) then placed by polar transform */
     .sat{
       position:absolute;
-      left: 0; top: 0;
+      left: 50%;
+      top: 50%;
       width: var(--sat-size);
       height: var(--sat-size);
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.07);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       display:flex;
@@ -321,67 +328,43 @@
       text-decoration:none;
       color: var(--text);
       user-select:none;
+
+      /* PERFECT CIRCLE: */
       transform:
+        translate(-50%,-50%)
         rotate(calc(var(--i) * (360deg / var(--n))))
         translate(var(--orb-radius))
         rotate(calc(var(--i) * (-360deg / var(--n))));
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
-    /* Keep hover without breaking polar position: apply scale via filter instead of transform */
+    /* hover without breaking geometry */
     .sat:hover{
-      border-color: rgba(255,255,255,.30);
-      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.32);
+      background: rgba(255,255,255,.11);
       filter: brightness(1.08);
     }
 
-    .sat .icon{
-      width: 22px; height: 22px;
-      opacity: .95;
-    }
+    .sat .icon{ width: 22px; height: 22px; opacity: .97; }
     .sat small{
       font-size: 10px;
-      color: var(--muted2);
+      color: rgba(234,240,255,.72);
       letter-spacing:.2px;
     }
 
-    /* Colored glow per satellite (closer to app) */
-    .sat.glow-cyan{ box-shadow: 0 0 0 1px rgba(77,235,255,.08), 0 18px 40px rgba(77,235,255,.10); }
-    .sat.glow-violet{ box-shadow: 0 0 0 1px rgba(138,92,255,.08), 0 18px 40px rgba(138,92,255,.12); }
-    .sat.glow-green{ box-shadow: 0 0 0 1px rgba(56,242,166,.08), 0 18px 40px rgba(56,242,166,.10); }
-    .sat.glow-warm{ box-shadow: 0 0 0 1px rgba(255,184,107,.08), 0 18px 40px rgba(255,184,107,.10); }
+    /* Make them look colored like the app (glow + top tint) */
+    .sat.cyan{ box-shadow: 0 0 0 1px rgba(77,235,255,.10), 0 18px 40px rgba(77,235,255,.14); }
+    .sat.violet{ box-shadow: 0 0 0 1px rgba(138,92,255,.10), 0 18px 40px rgba(138,92,255,.14); }
+    .sat.green{ box-shadow: 0 0 0 1px rgba(56,242,166,.10), 0 18px 40px rgba(56,242,166,.14); }
+    .sat.warm{ box-shadow: 0 0 0 1px rgba(255,184,107,.10), 0 18px 40px rgba(255,184,107,.14); }
+
+    .sat.cyan{ background: linear-gradient(180deg, rgba(77,235,255,.12), rgba(255,255,255,.06)); }
+    .sat.violet{ background: linear-gradient(180deg, rgba(138,92,255,.12), rgba(255,255,255,.06)); }
+    .sat.green{ background: linear-gradient(180deg, rgba(56,242,166,.12), rgba(255,255,255,.06)); }
+    .sat.warm{ background: linear-gradient(180deg, rgba(255,184,107,.12), rgba(255,255,255,.06)); }
 
     @keyframes spin{
-      from{ transform: translate(-50%,-50%) rotate(0deg); }
-      to{ transform: translate(-50%,-50%) rotate(360deg); }
-    }
-
-    /* Title row inside orbital panel (like your screenshot) */
-    .orb-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-    .orb-title{
-      display:flex;
-      flex-direction:column;
-      gap: 3px;
-    }
-    .orb-title b{ font-size: 13px; letter-spacing:.2px; }
-    .orb-title span{ font-size: 12px; color: var(--muted2); }
-
-    .pillRow{
-      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
-    }
-    .pill{
-      font-size: 12px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
+      from{ transform: rotate(0deg); }
+      to{ transform: rotate(360deg); }
     }
 
     footer{
@@ -399,9 +382,10 @@
 
     @media (max-width: 520px){
       :root{
-        --orb-size: 360px;
-        --orb-radius: 132px;
-        --sat-size: 52px;
+        --orb-size: 350px;
+        --orb-radius: 120px;
+        --sat-size: 48px;
+        --spin-sec: 22s;
       }
     }
 
@@ -411,12 +395,13 @@
     }
   </style>
 </head>
+
 <body>
   <div class="grid" aria-hidden="true"></div>
 
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="./index.html" title="Back to documentation">
+      <a class="brand" href="./index.html" title="Back to docs">
         <div class="logo" aria-hidden="true"></div>
         <div>
           <strong>Ultimatum Flash</strong>
@@ -433,7 +418,7 @@
     </div>
 
     <section class="hero">
-      <!-- Left -->
+      <!-- Left panel -->
       <div class="panel">
         <div class="panel-inner">
           <div class="kicker">
@@ -451,7 +436,7 @@
           </p>
 
           <div class="ctaRow">
-            <a class="btn primary" id="btnPlay" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" rel="nofollow noopener" target="_blank">
+            <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" rel="nofollow noopener" target="_blank">
               <span class="dot" aria-hidden="true"></span>
               Open on Google Play
             </a>
@@ -475,8 +460,8 @@
         </div>
       </div>
 
-      <!-- Right -->
-      <div class="panel orbital" aria-label="Orbital quick actions">
+      <!-- Right orbital panel -->
+      <div class="panel orbital">
         <div class="panel-inner">
           <div class="orb-header">
             <div class="orb-title">
@@ -490,114 +475,75 @@
           </div>
 
           <div class="orb-wrap" style="--n:12;">
-            <div class="ring2" aria-hidden="true"></div>
-            <div class="ring" aria-hidden="true"></div>
+            <div class="ringOuter" aria-hidden="true"></div>
+            <div class="ringInner" aria-hidden="true"></div>
 
             <div class="core">
               <b>Downloads</b>
               <span>WA Hub</span>
-              <span class="small" style="opacity:.75;font-size:12px;margin-top:2px;">Orbital shortcuts</span>
+              <span style="opacity:.75;font-size:12px;margin-top:2px;">Orbital shortcuts</span>
             </div>
 
             <div class="orbit" aria-hidden="true">
-              <!-- 12 satellites, perfectly spaced -->
-              <a class="sat glow-cyan" style="--i:0" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Google Play">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M8 5v14l11-7L8 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                </svg>
+              <!-- IMPORTANT: anchored at 50/50; perfect rotation around Downloads -->
+              <a class="sat cyan"   style="--i:0"  href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Google Play">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
                 <small>Play</small>
               </a>
 
-              <a class="sat glow-violet" style="--i:1" href="./privacy.html" title="Privacy Policy">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3l8 4v6c0 5-3.5 9-8 8-4.5 1-8-3-8-8V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M9.5 12l1.7 1.7L15 9.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <a class="sat violet" style="--i:1"  href="./privacy.html" title="Privacy Policy">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v6c0 5-3.5 9-8 8-4.5 1-8-3-8-8V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 12l1.7 1.7L15 9.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <small>Privacy</small>
               </a>
 
-              <a class="sat glow-green" style="--i:2" href="./terms.html" title="Terms of Service">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M7 3h7l3 3v15H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M14 3v4h4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M9 11h6M9 14h6M9 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
+              <a class="sat green"  style="--i:2"  href="./terms.html" title="Terms">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l3 3v15H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 11h6M9 14h6M9 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 <small>Terms</small>
               </a>
 
-              <a class="sat glow-warm" style="--i:3" href="./contact.html" title="Contact">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                </svg>
+              <a class="sat warm"  style="--i:3"  href="./contact.html" title="Contact">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
                 <small>Support</small>
               </a>
 
-              <a class="sat glow-cyan" style="--i:4" href="./index.html" title="Docs">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M6 18h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
+              <a class="sat cyan"   style="--i:4"  href="./index.html" title="Docs">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 18h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 <small>Docs</small>
               </a>
 
-              <a class="sat glow-violet" style="--i:5" href="./index.html#how" title="How it works">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                </svg>
-                <small>Flow</small>
-              </a>
-
-              <a class="sat glow-green" style="--i:6" href="./index.html#usecases" title="Use cases">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2v20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M5 7h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M7 12h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M9 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-                <small>Cases</small>
-              </a>
-
-              <a class="sat glow-warm" style="--i:7" href="./index.html#privacy" title="Privacy approach">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3a4 4 0 0 1 4 4v3h1a2 2 0 0 1 2 2v7H5v-7a2 2 0 0 1 2-2h1V7a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M10.5 14.5v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-                <small>Lock</small>
-              </a>
-
-              <a class="sat glow-cyan" style="--i:8" href="./index.html#pc" title="Android ↔ PC">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 5h16v10H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M8 19h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M10 15v4M14 15v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-                <small>PC</small>
-              </a>
-
-              <a class="sat glow-violet" style="--i:9" href="./index.html#android" title="Android ↔ Android">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M7 7h10v12H7V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M10 4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M9 20h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-                <small>Phone</small>
-              </a>
-
-              <a class="sat glow-green" style="--i:10" href="./index.html#qr" title="QR pairing">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 4h2v2h-2v-2Zm2-4h4v4h-4v-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                </svg>
+              <a class="sat violet" style="--i:5"  href="./index.html#qr" title="QR">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 4h2v2h-2v-2Zm2-4h4v4h-4v-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
                 <small>QR</small>
               </a>
 
-              <a class="sat glow-warm" style="--i:11" href="./index.html#lan" title="Local network">
-                <svg class="icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M12 7a5 5 0 1 0 5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M12 11a1 1 0 1 0 1 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
+              <a class="sat green"  style="--i:6"  href="./index.html#lan" title="LAN">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 7a5 5 0 1 0 5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 <small>LAN</small>
+              </a>
+
+              <a class="sat warm"  style="--i:7"  href="./index.html#pc" title="Android ↔ PC">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v10H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 19h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                <small>PC</small>
+              </a>
+
+              <a class="sat cyan"   style="--i:8"  href="./index.html#android" title="Android ↔ Android">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M7 7h10v12H7V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                <small>Phone</small>
+              </a>
+
+              <a class="sat violet" style="--i:9"  href="./index.html#usecases" title="Use cases">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M5 7h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M7 12h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                <small>Cases</small>
+              </a>
+
+              <a class="sat green"  style="--i:10" href="./index.html#privacy" title="Privacy">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3a4 4 0 0 1 4 4v3h1a2 2 0 0 1 2 2v7H5v-7a2 2 0 0 1 2-2h1V7a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                <small>Lock</small>
+              </a>
+
+              <a class="sat warm"  style="--i:11" href="./index.html#how" title="How it works">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                <small>Flow</small>
               </a>
             </div>
           </div>
