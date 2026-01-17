@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ultimatum Flash — Launch</title>
 
-  <!-- index.html remains trust/SEO. launch.html is branding/conversion. -->
+  <!-- Keep index.html for trust/SEO. This page is for conversion/branding. -->
   <meta name="robots" content="noindex,follow" />
   <meta name="description" content="Ultimatum Flash — futuristic offline file transfer. Local Wi-Fi + QR pairing. Android ↔ Android and Android ↔ PC. No cloud, no accounts." />
 
@@ -13,6 +13,8 @@
     :root{
       --bg0:#070A12;
       --bg1:#0A1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
       --stroke: rgba(255,255,255,.14);
       --stroke2: rgba(255,255,255,.20);
       --text:#EAF0FF;
@@ -21,6 +23,7 @@
       --accent:#4DEBFF;
       --accent2:#8A5CFF;
       --good:#38F2A6;
+      --warn:#FFB86B;
       --shadow: 0 20px 70px rgba(0,0,0,.55);
       --radius: 18px;
     }
@@ -222,6 +225,168 @@
     .card b{ display:block; font-size: 13px; letter-spacing:.2px; margin-bottom: 6px; }
     .card p{ margin:0; font-size: 12.8px; color: var(--muted); }
 
+    /* ===== Orbital HERO (closer to app) ===== */
+    .orbital{
+      min-height: 520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .orb-stage{
+      width: min(520px, 100%);
+      aspect-ratio: 1/1;
+      position: relative;
+      margin: 0 auto;
+      filter: drop-shadow(0 30px 75px rgba(0,0,0,.60));
+    }
+
+    .orb-bg{
+      position:absolute; inset:-8%;
+      background:
+        radial-gradient(420px 280px at 40% 35%, rgba(77,235,255,.18), transparent 62%),
+        radial-gradient(420px 280px at 70% 55%, rgba(138,92,255,.20), transparent 64%),
+        radial-gradient(420px 280px at 45% 80%, rgba(56,242,166,.10), transparent 70%);
+      filter: blur(6px);
+      opacity: .95;
+      pointer-events:none;
+    }
+
+    .orb-ring{
+      position:absolute;
+      inset: 10%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 66%);
+      pointer-events:none;
+    }
+    .orb-ring2{
+      position:absolute;
+      inset: 3%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .orb-core{
+      position:absolute;
+      inset: 30%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,.16), transparent 55%),
+        radial-gradient(circle at 50% 55%, rgba(77,235,255,.18), transparent 62%),
+        radial-gradient(circle at 70% 70%, rgba(138,92,255,.16), transparent 66%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 14px;
+      z-index: 3;
+      overflow:hidden;
+    }
+    .orb-core:before{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 180deg, rgba(77,235,255,.10), rgba(138,92,255,.10), rgba(56,242,166,.08), rgba(77,235,255,.10));
+      filter: blur(18px);
+      animation: corePulse 6s ease-in-out infinite;
+      opacity:.8;
+      pointer-events:none;
+    }
+    @keyframes corePulse{
+      0%,100%{ transform: rotate(0deg) scale(1); opacity:.75; }
+      50%{ transform: rotate(35deg) scale(1.05); opacity:1; }
+    }
+    .orb-core > div{ position:relative; z-index:2; }
+    .orb-core b{ display:block; font-size: 14px; letter-spacing:.25px; }
+    .orb-core span{ display:block; margin-top: 6px; font-size: 12px; color: var(--muted); }
+
+    /* orbit layers */
+    .orbitA, .orbitB{
+      position:absolute; inset:0;
+      transform-origin: 50% 50%;
+      z-index: 4;
+    }
+    .orbitA{ animation: spin 18s linear infinite; }
+    .orbitB{ animation: spin 28s linear infinite reverse; opacity: .98; }
+
+    @keyframes spin{
+      from{ transform: rotate(0deg); }
+      to{ transform: rotate(360deg); }
+    }
+
+    .sat{
+      position:absolute;
+      width: 68px; height: 68px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      text-decoration:none;
+      color: var(--text);
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      user-select:none;
+    }
+    .sat:hover{
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(77,235,255,.34);
+    }
+
+    .satIcon{
+      width: 26px; height: 26px;
+      opacity: .95;
+      filter: drop-shadow(0 10px 20px rgba(77,235,255,.14));
+    }
+    .sat small{
+      font-size: 10px;
+      color: var(--muted2);
+      letter-spacing:.2px;
+    }
+
+    /* positions around circle */
+    .p1{ top: 6%; left: 50%; transform: translate(-50%,0); }
+    .p2{ top: 18%; left: 82%; transform: translate(-50%,0); }
+    .p3{ top: 50%; left: 92%; transform: translate(-50%,-50%); }
+    .p4{ top: 84%; left: 58%; transform: translate(-50%,-50%); }
+    .p5{ top: 70%; left: 18%; transform: translate(-50%,-50%); }
+    .p6{ top: 30%; left: 14%; transform: translate(-50%,-50%); }
+    .p7{ top: 84%; left: 42%; transform: translate(-50%,-50%); }
+    .p8{ top: 50%; left: 8%; transform: translate(-50%,-50%); }
+
+    /* sparks */
+    .spark{
+      position:absolute;
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: rgba(77,235,255,.9);
+      box-shadow: 0 0 0 6px rgba(77,235,255,.10), 0 0 30px rgba(77,235,255,.20);
+      pointer-events:none;
+      z-index: 2;
+    }
+    .s1{ top: 14%; left: 30%; }
+    .s2{ top: 26%; left: 72%; background: rgba(138,92,255,.9); box-shadow: 0 0 0 6px rgba(138,92,255,.10), 0 0 30px rgba(138,92,255,.20); }
+    .s3{ top: 52%; left: 92%; }
+    .s4{ top: 84%; left: 66%; background: rgba(56,242,166,.9); box-shadow: 0 0 0 6px rgba(56,242,166,.10), 0 0 30px rgba(56,242,166,.20); }
+    .s5{ top: 66%; left: 10%; }
+    .s6{ top: 16%; left: 52%; }
+
+    @media (max-width: 980px){
+      .orbital{ min-height: 480px; }
+      .sat{ width: 62px; height:62px; border-radius: 20px; }
+      .satIcon{ width: 24px; height:24px; }
+    }
+
     /* Footer */
     footer{
       margin-top: 26px;
@@ -238,140 +403,9 @@
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
-      .btn, .chip{ transition:none !important; }
-      .heroOrbitA, .heroOrbitB{ animation:none !important; }
-    }
-
-    /* ===== Image-based Orbital Hero (2026) ===== */
-    .orbital{
-      min-height: 420px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .heroStage{
-      position:relative;
-      width: min(520px, 100%);
-      min-height: 420px;
-      border-radius: 18px;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 18px;
-    }
-    .heroGlow{
-      position:absolute; inset:-20%;
-      background:
-        radial-gradient(520px 360px at 45% 35%, rgba(77,235,255,.22), transparent 62%),
-        radial-gradient(520px 360px at 70% 55%, rgba(138,92,255,.20), transparent 64%),
-        radial-gradient(520px 360px at 40% 80%, rgba(56,242,166,.10), transparent 70%);
-      filter: blur(6px);
-      opacity: .95;
-      pointer-events:none;
-      z-index:0;
-    }
-    .heroPhone{
-      position:relative;
-      width:min(420px, 96%);
-      height:auto;
-      z-index:3;
-      border-radius: 22px;
-      box-shadow: 0 30px 90px rgba(0,0,0,.65);
-      transform: translateZ(0);
-    }
-    .heroRing{
-      position:absolute;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.05), transparent 68%);
-      pointer-events:none;
-      z-index:1;
-    }
-    .heroRing1{ inset: 10%; }
-    .heroRing2{ inset: 2%; opacity:.65; }
-
-    .heroOrbit{
-      position:absolute; inset:0;
-      z-index:4;
-      pointer-events:none;
-    }
-    .heroOrbitA{
-      animation: spin 18s linear infinite;
-    }
-    .heroOrbitA .heroSat{
-      pointer-events:auto;
-    }
-    .heroOrbitB{
-      animation: spin 34s linear infinite reverse;
-      opacity:.75;
-      pointer-events:none;
-    }
-    @keyframes spin{
-      from{ transform: rotate(0deg); }
-      to{ transform: rotate(360deg); }
-    }
-
-    .heroSat{
-      position:absolute;
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:4px;
-      text-decoration:none;
-      color: var(--text);
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      user-select:none;
-    }
-    .heroSat:hover{
-      transform: translateY(-2px) scale(1.03);
-      background: rgba(255,255,255,.10);
-      border-color: rgba(77,235,255,.35);
-    }
-    .heroSat small{
-      font-size: 10px;
-      color: var(--muted2);
-      letter-spacing:.2px;
-    }
-    .satIcon{
-      font-size: 18px;
-      line-height: 1;
-      filter: drop-shadow(0 8px 18px rgba(77,235,255,.15));
-    }
-
-    .s1{ top: 6%; left: 50%; transform: translate(-50%,0); }
-    .s2{ top: 20%; left: 82%; transform: translate(-50%,0); }
-    .s3{ top: 54%; left: 90%; transform: translate(-50%,-50%); }
-    .s4{ top: 84%; left: 55%; transform: translate(-50%,-50%); }
-    .s5{ top: 60%; left: 12%; transform: translate(-50%,-50%); }
-    .s6{ top: 22%; left: 18%; transform: translate(-50%,0); }
-
-    .spark{
-      position:absolute;
-      width: 6px; height: 6px;
-      border-radius: 999px;
-      background: rgba(77,235,255,.9);
-      box-shadow: 0 0 0 6px rgba(77,235,255,.10), 0 0 30px rgba(77,235,255,.20);
-    }
-    .p1{ top: 12%; left: 30%; }
-    .p2{ top: 24%; left: 72%; background: rgba(138,92,255,.9); box-shadow: 0 0 0 6px rgba(138,92,255,.10), 0 0 30px rgba(138,92,255,.20); }
-    .p3{ top: 52%; left: 90%; }
-    .p4{ top: 84%; left: 66%; background: rgba(56,242,166,.9); box-shadow: 0 0 0 6px rgba(56,242,166,.10), 0 0 30px rgba(56,242,166,.20); }
-    .p5{ top: 66%; left: 12%; }
-    .p6{ top: 18%; left: 50%; }
-
-    @media (max-width: 980px){
-      .heroStage{ min-height: 380px; }
-      .heroSat{ width: 58px; height:58px; border-radius: 16px; }
+      .orbitA, .orbitB{ animation: none !important; }
+      .btn, .chip, .sat{ transition:none !important; }
+      .orb-core:before{ animation:none !important; }
     }
   </style>
 </head>
@@ -432,63 +466,131 @@
           </div>
 
           <div class="below">
-            <div class="card"><div>
-              <b>Offline-first</b>
-              <p>Transfers happen locally on your Wi-Fi/LAN. No internet required.</p>
-            </div></div>
-            <div class="card"><div>
-              <b>Fast pairing</b>
-              <p>Scan a QR code to connect and start sending in seconds.</p>
-            </div></div>
-            <div class="card"><div>
-              <b>Privacy by design</b>
-              <p>Your files stay under your control. No cloud uploads.</p>
-            </div></div>
+            <div class="card">
+              <div>
+                <b>Offline-first</b>
+                <p>Transfers happen locally on your Wi-Fi/LAN. No internet required.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div>
+                <b>Fast pairing</b>
+                <p>Scan a QR code to connect and start sending in seconds.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div>
+                <b>Privacy by design</b>
+                <p>Your files stay under your control. No cloud uploads.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Right: Image + Orbital like your promo -->
-      <div class="panel orbital" aria-label="Orbital hero">
+      <!-- Right: Orbital HERO -->
+      <div class="panel orbital" aria-label="Orbital quick actions">
         <div class="panel-inner">
-          <div class="heroStage">
-            <div class="heroGlow" aria-hidden="true"></div>
+          <div class="orb-stage">
+            <div class="orb-bg" aria-hidden="true"></div>
+            <div class="orb-ring2" aria-hidden="true"></div>
+            <div class="orb-ring" aria-hidden="true"></div>
 
-            <!-- IMPORTANT: upload your image to /assets/hero.webp -->
-            <img class="heroPhone" src="./assets/hero.jpg" alt="Ultimatum FlashShare preview" loading="eager" />
+            <div class="orb-core">
+              <div>
+                <b>WA Hub</b>
+                <span>Orbital quick access</span>
+              </div>
+            </div>
 
-            <div class="heroRing heroRing1" aria-hidden="true"></div>
-            <div class="heroRing heroRing2" aria-hidden="true"></div>
+            <!-- Orbit A -->
+            <div class="orbitA" aria-hidden="true">
+              <!-- SEND -->
+              <a class="sat p1" href="./index.html#how" title="Send">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M12 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <small>SEND</small>
+              </a>
 
-            <div class="heroOrbit heroOrbitA" aria-hidden="true">
-              <a class="heroSat s1" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Google Play">
-                <span class="satIcon">▶</span><small>Play</small>
+              <!-- RECEIVE -->
+              <a class="sat p3" href="./index.html#how" title="Receive">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 12H8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M12 18l-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <small>RECV</small>
               </a>
-              <a class="heroSat s2" href="./index.html" title="Send / Receive">
-                <span class="satIcon">⇄</span><small>Send</small>
+
+              <!-- PC -->
+              <a class="sat p4" href="./index.html" title="Android ↔ PC">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 5h16v10H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 19h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M8 15v2m8-2v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>PC</small>
               </a>
-              <a class="heroSat s3" href="./index.html" title="QR Pairing">
-                <span class="satIcon">▦</span><small>QR</small>
-              </a>
-              <a class="heroSat s4" href="./index.html" title="Android ↔ PC">
-                <span class="satIcon">🖥</span><small>PC</small>
-              </a>
-              <a class="heroSat s5" href="./privacy.html" title="Privacy">
-                <span class="satIcon">🛡</span><small>Safe</small>
-              </a>
-              <a class="heroSat s6" href="./contact.html" title="Support">
-                <span class="satIcon">✉</span><small>Help</small>
+
+              <!-- DOCS -->
+              <a class="sat p6" href="./index.html" title="Docs">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h7l3 3v15H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M14 3v4h4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 11h6M9 14h6M9 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>DOCS</small>
               </a>
             </div>
 
-            <div class="heroOrbit heroOrbitB" aria-hidden="true">
-              <div class="spark p1"></div>
-              <div class="spark p2"></div>
-              <div class="spark p3"></div>
-              <div class="spark p4"></div>
-              <div class="spark p5"></div>
-              <div class="spark p6"></div>
+            <!-- Orbit B -->
+            <div class="orbitB" aria-hidden="true">
+              <!-- APK -->
+              <a class="sat p2" href="./index.html" title="APK">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 7h10v12H7V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 5h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M10 11h4M10 14h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>APK</small>
+              </a>
+
+              <!-- ZIP -->
+              <a class="sat p5" href="./index.html" title="ZIP">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4h10v16H7V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M10 7h4M10 10h4M10 13h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M10 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>ZIP</small>
+              </a>
+
+              <!-- PRIVACY -->
+              <a class="sat p7" href="./privacy.html" title="Privacy">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3l8 4v6c0 5-3.5 9-8 8-4.5 1-8-3-8-8V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9.5 12l1.7 1.7L15 9.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <small>SAFE</small>
+              </a>
+
+              <!-- PLAY -->
+              <a class="sat p8" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Google Play">
+                <svg class="satIcon" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5v14l11-7L8 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <small>PLAY</small>
+              </a>
             </div>
+
+            <!-- sparks -->
+            <div class="spark s1" aria-hidden="true"></div>
+            <div class="spark s2" aria-hidden="true"></div>
+            <div class="spark s3" aria-hidden="true"></div>
+            <div class="spark s4" aria-hidden="true"></div>
+            <div class="spark s5" aria-hidden="true"></div>
+            <div class="spark s6" aria-hidden="true"></div>
 
           </div>
         </div>
