@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ultimatum Flash — Launch</title>
+
+  <!-- Keep index.html for trust/SEO. This page is for conversion/branding. -->
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Ultimatum Flash — futuristic offline file transfer. Local Wi-Fi + QR pairing. Android ↔ Android and Android ↔ PC. No cloud, no accounts." />
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0A1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --stroke: rgba(255,255,255,.14);
+      --stroke2: rgba(255,255,255,.20);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --muted2: rgba(234,240,255,.55);
+      --accent:#4DEBFF;
+      --accent2:#8A5CFF;
+      --good:#38F2A6;
+      --warn:#FFB86B;
+      --shadow: 0 20px 70px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(77,235,255,.14), transparent 55%),
+        radial-gradient(900px 500px at 85% 25%, rgba(138,92,255,.16), transparent 55%),
+        radial-gradient(700px 500px at 40% 95%, rgba(56,242,166,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    /* Subtle grid */
+    .grid{
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(900px 600px at 50% 20%, rgba(0,0,0,1), rgba(0,0,0,.08) 70%, transparent 100%);
+    }
+
+    .wrap{ max-width:1120px; margin:0 auto; padding: 26px 16px 70px; }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 10px 8px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none; color:var(--text);
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(77,235,255,.85), rgba(138,92,255,.85));
+      box-shadow: 0 10px 30px rgba(77,235,255,.12);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:1px;
+      border-radius:11px;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.35), transparent 55%);
+      opacity:.9;
+    }
+    .brand strong{ font-size:14px; letter-spacing:.4px; }
+    .brand span{ display:block; font-size:12px; color:var(--muted2); margin-top:1px; }
+
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      text-decoration:none; color:var(--muted);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .chip:hover{
+      transform: translateY(-1px);
+      border-color: var(--stroke2);
+      background: rgba(255,255,255,.06);
+    }
+
+    .hero{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      align-items:stretch;
+    }
+
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .panel:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 220px at 20% 15%, rgba(77,235,255,.18), transparent 60%),
+                  radial-gradient(420px 240px at 85% 25%, rgba(138,92,255,.18), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .panel-inner{ position:relative; padding: 22px; }
+
+    .kicker{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-bottom: 10px;
+    }
+    .tag{
+      font-size: 12px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      letter-spacing:.2px;
+    }
+    .tag.good{ border-color: rgba(56,242,166,.35); color: rgba(56,242,166,.95); background: rgba(56,242,166,.06); }
+    .tag.accent{ border-color: rgba(77,235,255,.35); color: rgba(77,235,255,.95); background: rgba(77,235,255,.06); }
+
+    h1{
+      margin: 6px 0 10px;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.08;
+      letter-spacing: .2px;
+    }
+    .sub{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 62ch;
+    }
+
+    .ctaRow{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top: 16px;
+    }
+    .btn{
+      appearance:none; border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 650;
+      letter-spacing:.2px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.09); }
+    .btn.primary{
+      border-color: rgba(77,235,255,.38);
+      background: linear-gradient(135deg, rgba(77,235,255,.18), rgba(138,92,255,.16));
+    }
+    .btn .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(77,235,255,.12);
+    }
+    .btn.secondary .dot{ background: rgba(255,255,255,.75); box-shadow:none; }
+
+    .mini{
+      margin-top: 14px;
+      color: var(--muted2);
+      font-size: 12px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .mini a{ color: var(--muted); text-decoration:none; border-bottom: 1px dashed rgba(255,255,255,.25); }
+    .mini a:hover{ color: var(--text); border-bottom-color: rgba(255,255,255,.5); }
+
+    /* Orbital module */
+    .orbital{
+      min-height: 420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .orb-wrap{
+      width: 420px;
+      max-width: 100%;
+      aspect-ratio: 1/1;
+      position: relative;
+      filter: drop-shadow(0 30px 65px rgba(0,0,0,.55));
+    }
+    .core{
+      position:absolute;
+      inset: 30%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 50% 55%, rgba(77,235,255,.18), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(138,92,255,.14), transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:10px;
+      text-align:center;
+      padding: 14px;
+      z-index: 3;
+    }
+    .core b{ font-size: 14px; letter-spacing:.3px; }
+    .core span{ font-size:12px; color: var(--muted); }
+
+    .ring{
+      position:absolute;
+      inset: 12%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 64%);
+      z-index:1;
+    }
+    .ring2{
+      position:absolute;
+      inset: 4%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      z-index:0;
+    }
+
+    .sat{
+      position:absolute;
+      width: 58px; height: 58px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--text);
+      text-decoration:none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      z-index: 2;
+      user-select:none;
+    }
+    .sat:hover{
+      transform: translateY(-2px) scale(1.02);
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.10);
+    }
+    .sat small{
+      display:block;
+      font-size: 10px;
+      color: var(--muted2);
+      margin-top: 3px;
+      letter-spacing:.2px;
+    }
+    .sat .icon{
+      width: 22px; height: 22px;
+      opacity: .95;
+    }
+
+    /* Orbit animation */
+    .orbit{
+      position:absolute;
+      inset: 0;
+      animation: spin 18s linear infinite;
+      transform-origin: 50% 50%;
+    }
+    .orbit2{
+      position:absolute;
+      inset: 0;
+      animation: spin 26s linear infinite reverse;
+      transform-origin: 50% 50%;
+      opacity: .95;
+    }
+    @keyframes spin{
+      from{ transform: rotate(0deg); }
+      to{ transform: rotate(360deg); }
+    }
+
+    /* Place satellites around circle */
+    .p1{ top: 8%; left: 50%; transform: translate(-50%,0); }
+    .p2{ top: 22%; left: 82%; transform: translate(-50%,0); }
+    .p3{ top: 54%; left: 88%; transform: translate(-50%,-50%); }
+    .p4{ top: 82%; left: 50%; transform: translate(-50%,-50%); }
+    .p5{ top: 54%; left: 12%; transform: translate(-50%,-50%); }
+    .p6{ top: 22%; left: 18%; transform: translate(-50%,0); }
+
+    /* Feature grid */
+    .below{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .below{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(260px 120px at 20% 10%, rgba(77,235,255,.10), transparent 62%),
+                  radial-gradient(220px 120px at 85% 25%, rgba(138,92,255,.10), transparent 58%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .card > div{ position:relative; }
+    .card b{ display:block; font-size: 13px; letter-spacing:.2px; margin-bottom: 6px; }
+    .card p{ margin:0; font-size: 12.8px; color: var(--muted); }
+
+    /* Footer */
+    footer{
+      margin-top: 26px;
+      color: var(--muted2);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      padding: 12px 4px 0;
+    }
+    footer a{ color: var(--muted); text-decoration:none; }
+    footer a:hover{ color: var(--text); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .orbit, .orbit2{ animation: none !important; }
+      .btn, .chip, .sat{ transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./index.html" title="Back to documentation">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>Ultimatum Flash</strong>
+          <span>Offline File Transfer</span>
+        </div>
+      </a>
+
+      <div class="nav">
+        <a class="chip" href="./index.html">Docs</a>
+        <a class="chip" href="./privacy.html">Privacy</a>
+        <a class="chip" href="./terms.html">Terms</a>
+        <a class="chip" href="./contact.html">Contact</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <!-- Left: Copy + CTA -->
+      <div class="panel">
+        <div class="panel-inner">
+          <div class="kicker">
+            <span class="tag accent">Local Wi-Fi</span>
+            <span class="tag">QR pairing</span>
+            <span class="tag good">No cloud</span>
+            <span class="tag">No accounts</span>
+          </div>
+
+          <h1>Send files at local speed. Stay offline. Keep control.</h1>
+          <p class="sub">
+            Ultimatum Flash transfers files directly over your local network —
+            <strong>Android ↔ Android</strong> and <strong>Android ↔ PC</strong>.
+            No uploads. No background syncing. Just fast, private transfers.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn primary" id="btnPlay" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" rel="nofollow noopener" target="_blank">
+              <span class="dot" aria-hidden="true"></span>
+              Open on Google Play
+            </a>
+            <a class="btn secondary" href="./index.html">
+              <span class="dot" aria-hidden="true"></span>
+              How it works
+            </a>
+          </div>
+
+          <div class="mini">
+            <span>Tip: For discovery posts, tell people to search:</span>
+            <span><b>offline file transfer android pc</b></span>
+            <a href="./index.html">See documentation</a>
+          </div>
+
+          <div class="below">
+            <div class="card">
+              <div>
+                <b>Offline-first</b>
+                <p>Transfers happen locally on your Wi-Fi/LAN. No internet required.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div>
+                <b>Fast pairing</b>
+                <p>Scan a QR code to connect and start sending in seconds.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div>
+                <b>Privacy by design</b>
+                <p>Your files stay under your control. No cloud uploads.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Orbital UI module -->
+      <div class="panel orbital" aria-label="Orbital quick actions">
+        <div class="panel-inner">
+          <div class="orb-wrap">
+            <div class="ring2" aria-hidden="true"></div>
+            <div class="ring" aria-hidden="true"></div>
+
+            <div class="core">
+              <b>Orbital Core</b>
+              <span>Quick actions</span>
+            </div>
+
+            <!-- Orbit layer 1 -->
+            <div class="orbit" aria-hidden="true">
+              <a class="sat p1" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Google Play">
+                <!-- icon: play -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5v14l11-7L8 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                  <small>Play</small>
+                </div>
+              </a>
+
+              <a class="sat p3" href="./privacy.html" title="Privacy Policy">
+                <!-- icon: shield -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3l8 4v6c0 5-3.5 9-8 8-4.5 1-8-3-8-8V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9.5 12l1.7 1.7L15 9.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div><small>Privacy</small></div>
+              </a>
+
+              <a class="sat p5" href="./terms.html" title="Terms of Service">
+                <!-- icon: file -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h7l3 3v15H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M14 3v4h4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 11h6M9 14h6M9 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <div><small>Terms</small></div>
+              </a>
+            </div>
+
+            <!-- Orbit layer 2 -->
+            <div class="orbit2" aria-hidden="true">
+              <a class="sat p2" href="./index.html#how" title="How it works">
+                <!-- icon: bolt -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <div><small>Flow</small></div>
+              </a>
+
+              <a class="sat p4" href="./contact.html" title="Contact">
+                <!-- icon: mail -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <div><small>Support</small></div>
+              </a>
+
+              <a class="sat p6" href="./index.html" title="Documentation">
+                <!-- icon: book -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M6 18h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <div><small>Docs</small></div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <span>© <span id="y"></span> Ultimatum Flash</span>
+        <span style="margin-left:10px;opacity:.9;">Local-only transfers. No cloud required.</span>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="./index.html">Docs</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Minimal JS (performance-safe)
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Optional: add UTM for social campaigns if you want later (keep clean for now).
+    // Example:
+    // const play = document.getElementById('btnPlay');
+    // play.href = play.href + "&referrer=utm_source%3Dgithub%26utm_medium%3Dlaunch%26utm_campaign%3Dorganic";
+  </script>
+</body>
+</html>
