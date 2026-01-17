@@ -5,70 +5,63 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ultimatum Flash — Launch</title>
 
+  <!-- Keep index.html for trust/SEO. This page is for conversion/branding. -->
   <meta name="robots" content="noindex,follow" />
-  <meta name="description" content="Ultimatum Flash — offline file transfer. Local Wi-Fi + QR pairing. Android ↔ Android and Android ↔ PC. No cloud, no accounts." />
+  <meta name="description" content="Ultimatum Flash — futuristic offline file transfer. Local Wi-Fi + QR pairing. Android ↔ Android and Android ↔ PC. No cloud, no accounts." />
 
   <style>
     :root{
-      --bg0:#060814;
-      --bg1:#090B1A;
+      --bg0:#070A12;
+      --bg1:#0A1020;
       --stroke: rgba(255,255,255,.14);
       --stroke2: rgba(255,255,255,.22);
-      --txt:#EAF0FF;
-      --muted: rgba(234,240,255,.74);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
       --muted2: rgba(234,240,255,.55);
-
-      --cyan:#55E8FF;
-      --violet:#8B5BFF;
-      --mag:#FF4FD8;
-      --lime:#2EF2A6;
-      --amber:#FFB86B;
-
-      --shadow: 0 22px 70px rgba(0,0,0,.62);
-      --r: 18px;
+      --accent:#4DEBFF;
+      --accent2:#8A5CFF;
+      --good:#38F2A6;
+      --shadow: 0 20px 70px rgba(0,0,0,.55);
+      --radius: 18px;
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--txt);
+      color:var(--text);
       background:
-        radial-gradient(900px 520px at 18% 12%, rgba(85,232,255,.16), transparent 60%),
-        radial-gradient(720px 520px at 85% 20%, rgba(139,91,255,.16), transparent 60%),
-        radial-gradient(680px 520px at 35% 92%, rgba(46,242,166,.10), transparent 64%),
+        radial-gradient(1200px 600px at 20% 10%, rgba(77,235,255,.14), transparent 55%),
+        radial-gradient(900px 500px at 85% 25%, rgba(138,92,255,.16), transparent 55%),
+        radial-gradient(700px 500px at 40% 95%, rgba(56,242,166,.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
-
     .grid{
       position:fixed; inset:0;
       pointer-events:none;
-      opacity:.20;
+      opacity:.22;
       background-image:
         linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 46px 46px;
-      mask-image: radial-gradient(900px 600px at 50% 20%, rgba(0,0,0,1), rgba(0,0,0,.14) 72%, transparent 100%);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(900px 600px at 50% 20%, rgba(0,0,0,1), rgba(0,0,0,.08) 70%, transparent 100%);
     }
 
-    .wrap{ max-width:1200px; margin:0 auto; padding: 26px 16px 64px; }
-
+    .wrap{ max-width:1120px; margin:0 auto; padding: 26px 16px 70px; }
     .topbar{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
       padding: 10px 8px;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
-      text-decoration:none; color:var(--txt);
+      text-decoration:none; color:var(--text);
     }
     .logo{
       width:34px; height:34px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(85,232,255,.92), rgba(139,91,255,.92));
-      box-shadow: 0 10px 30px rgba(85,232,255,.12);
+      background: linear-gradient(135deg, rgba(77,235,255,.85), rgba(138,92,255,.85));
+      box-shadow: 0 10px 30px rgba(77,235,255,.12);
       position:relative;
-      flex: 0 0 auto;
     }
     .logo:after{
       content:"";
@@ -89,44 +82,41 @@
       border-radius: 999px;
       font-size: 12px;
       transition: transform .15s ease, border-color .15s ease, background .15s ease;
-      user-select:none;
     }
-    .chip:hover{ transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.06); }
+    .chip:hover{
+      transform: translateY(-1px);
+      border-color: var(--stroke2);
+      background: rgba(255,255,255,.06);
+    }
 
     .hero{
-      margin-top: 20px;
+      margin-top: 26px;
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
       align-items:stretch;
     }
-    @media (max-width: 980px){ .hero{ grid-template-columns: 1fr; } }
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+    }
 
     .panel{
       border:1px solid var(--stroke);
-      border-radius: var(--r);
+      border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       box-shadow: var(--shadow);
       position:relative;
       overflow:hidden;
-      min-height: 540px;
-      display:flex;
     }
     .panel:before{
       content:"";
       position:absolute; inset:-2px;
-      background:
-        radial-gradient(520px 240px at 20% 15%, rgba(85,232,255,.18), transparent 60%),
-        radial-gradient(520px 260px at 85% 25%, rgba(139,91,255,.18), transparent 58%),
-        radial-gradient(520px 260px at 50% 95%, rgba(255,79,216,.08), transparent 60%);
+      background: radial-gradient(500px 220px at 20% 15%, rgba(77,235,255,.18), transparent 60%),
+                  radial-gradient(420px 240px at 85% 25%, rgba(138,92,255,.18), transparent 55%);
       opacity:.9;
       pointer-events:none;
     }
-    .panel-inner{
-      position:relative;
-      padding: 22px;
-      width:100%;
-    }
+    .panel-inner{ position:relative; padding: 22px; }
 
     .kicker{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom: 10px; }
     .tag{
@@ -137,10 +127,9 @@
       border-radius: 999px;
       color: var(--muted);
       letter-spacing:.2px;
-      user-select:none;
     }
-    .tag.cyan{ border-color: rgba(85,232,255,.36); color: rgba(85,232,255,.95); background: rgba(85,232,255,.06); }
-    .tag.lime{ border-color: rgba(46,242,166,.34); color: rgba(46,242,166,.95); background: rgba(46,242,166,.06); }
+    .tag.good{ border-color: rgba(56,242,166,.35); color: rgba(56,242,166,.95); background: rgba(56,242,166,.06); }
+    .tag.accent{ border-color: rgba(77,235,255,.35); color: rgba(77,235,255,.95); background: rgba(77,235,255,.06); }
 
     h1{
       margin: 6px 0 10px;
@@ -149,343 +138,273 @@
       letter-spacing: .2px;
     }
     .sub{
-      margin: 0 0 14px;
+      margin: 0 0 16px;
       color: var(--muted);
       font-size: 15px;
       max-width: 62ch;
     }
 
-    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top: 14px; }
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top: 16px; }
     .btn{
       appearance:none; border:1px solid var(--stroke);
       background: rgba(255,255,255,.06);
-      color: var(--txt);
+      color: var(--text);
       padding: 12px 14px;
       border-radius: 14px;
-      font-weight: 700;
+      font-weight: 650;
       letter-spacing:.2px;
       cursor:pointer;
       text-decoration:none;
       display:inline-flex; align-items:center; gap:10px;
       transition: transform .15s ease, border-color .15s ease, background .15s ease;
-      user-select:none;
     }
     .btn:hover{ transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.09); }
     .btn.primary{
-      border-color: rgba(85,232,255,.42);
-      background: linear-gradient(135deg, rgba(85,232,255,.18), rgba(139,91,255,.16));
+      border-color: rgba(77,235,255,.38);
+      background: linear-gradient(135deg, rgba(77,235,255,.18), rgba(138,92,255,.16));
     }
     .btn .dot{
       width:10px; height:10px; border-radius:999px;
-      background: var(--cyan);
-      box-shadow: 0 0 0 4px rgba(85,232,255,.12);
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(77,235,255,.12);
     }
-    .btn.secondary .dot{ background: rgba(255,255,255,.78); box-shadow:none; }
+    .btn.secondary .dot{ background: rgba(255,255,255,.75); box-shadow:none; }
 
     .mini{
-      margin-top: 12px;
+      margin-top: 14px;
       color: var(--muted2);
       font-size: 12px;
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
     }
-    .mini code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      padding: 4px 8px;
-      border-radius: 10px;
-      color: rgba(234,240,255,.90);
-    }
+    .mini a{ color: var(--muted); text-decoration:none; border-bottom: 1px dashed rgba(255,255,255,.25); }
+    .mini a:hover{ color: var(--text); border-bottom-color: rgba(255,255,255,.5); }
 
     .below{
-      margin-top: 14px;
+      margin-top: 18px;
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
-    @media (max-width: 980px){ .below{ grid-template-columns: 1fr; } }
-    .fcard{
-      border: 1px solid rgba(255,255,255,.12);
+    @media (max-width: 980px){
+      .below{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border: 1px solid var(--stroke);
       border-radius: 16px;
       background: rgba(255,255,255,.04);
       padding: 14px;
       position:relative;
       overflow:hidden;
     }
-    .fcard:before{
+    .card:before{
       content:"";
       position:absolute; inset:-1px;
-      background:
-        radial-gradient(260px 120px at 20% 10%, rgba(85,232,255,.10), transparent 62%),
-        radial-gradient(220px 120px at 85% 25%, rgba(139,91,255,.10), transparent 58%);
-      opacity:.9; pointer-events:none;
+      background: radial-gradient(260px 120px at 20% 10%, rgba(77,235,255,.10), transparent 62%),
+                  radial-gradient(220px 120px at 85% 25%, rgba(138,92,255,.10), transparent 58%);
+      opacity:.9;
+      pointer-events:none;
     }
-    .fcard > div{ position:relative; }
-    .fcard b{ display:block; font-size: 13px; letter-spacing:.2px; margin-bottom: 6px; }
-    .fcard p{ margin:0; font-size: 12.8px; color: var(--muted); }
+    .card > div{ position:relative; }
+    .card b{ display:block; font-size: 13px; letter-spacing:.2px; margin-bottom: 6px; }
+    .card p{ margin:0; font-size: 12.8px; color: var(--muted); }
 
-    .orbitalPanel .panel-inner{
+    /* ===== ORBITAL (FIXED GEOMETRY) ===== */
+    .orbital{
+      min-height: 420px;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 22px;
     }
-
-    .orb{
-      width: min(520px, 100%);
+    .orb-wrap{
+      width: 440px;
+      max-width: 100%;
       aspect-ratio: 1/1;
       position: relative;
-      border-radius: 24px;
-      margin: 0 auto;
+      filter: drop-shadow(0 30px 65px rgba(0,0,0,.55));
     }
 
-    .orbStage{
-      position:absolute; inset: 0;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 50% 55%, rgba(20,24,60,.85) 0%, rgba(8,10,24,.92) 40%, rgba(6,7,18,1) 78%),
-        radial-gradient(520px 520px at 50% 60%, rgba(139,91,255,.14), transparent 58%),
-        radial-gradient(520px 520px at 45% 40%, rgba(85,232,255,.12), transparent 62%),
-        radial-gradient(520px 520px at 55% 80%, rgba(255,79,216,.08), transparent 62%);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: 0 28px 85px rgba(0,0,0,.72);
-      overflow:hidden;
-    }
-
-    .orbGlow{
-      position:absolute; inset:-12%;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(85,232,255,.18), transparent 55%),
-        radial-gradient(circle at 60% 55%, rgba(139,91,255,.20), transparent 55%),
-        radial-gradient(circle at 45% 62%, rgba(255,79,216,.10), transparent 60%);
-      filter: blur(16px);
-      opacity: .9;
-      pointer-events:none;
-    }
-
-    .orbCaption{
+    /* Rings */
+    .ring2{
       position:absolute;
-      left:22px; top:22px;
-      right:22px;
-      z-index: 7;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      user-select:none;
+      inset: 3%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.03), transparent 68%);
+      z-index:0;
     }
-    .orbTitle{ display:flex; flex-direction:column; gap: 2px; }
-    .orbTitle b{ font-size: 13px; letter-spacing:.3px; }
-    .orbTitle span{ font-size: 12px; color: rgba(234,240,255,.68); }
-    .orbMini{ display:flex; gap: 8px; align-items:center; flex-wrap:wrap; }
-    .pill{
-      font-size: 11px;
-      padding: 6px 10px;
+    .ring1{
+      position:absolute;
+      inset: 12%;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: rgba(234,240,255,.72);
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 64%);
+      z-index:0;
     }
 
-    .ringA, .ringB{
+    /* Core */
+    .core{
       position:absolute;
-      left:50%; top:58%;
-      transform: translate(-50%, -50%);
-      border-radius: 999px;
-      pointer-events:none;
-    }
-    .ringA{
-      width: 74%;
-      height: 74%;
-      border: 2px solid rgba(255,255,255,.10);
-      box-shadow:
-        0 0 0 1px rgba(85,232,255,.10),
-        0 0 40px rgba(85,232,255,.10),
-        0 0 60px rgba(139,91,255,.08);
-    }
-    .ringB{
-      width: 92%;
-      height: 92%;
-      border: 1px solid rgba(255,255,255,.06);
-      opacity:.9;
-    }
-
-    .energy{
-      position:absolute;
-      left:50%; top:58%;
-      width: 92%;
-      height: 92%;
+      left:50%; top:50%;
       transform: translate(-50%,-50%);
+      width: 170px; height: 170px;
       border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
       background:
-        conic-gradient(
-          from 0deg,
-          rgba(85,232,255,.00),
-          rgba(85,232,255,.12),
-          rgba(139,91,255,.10),
-          rgba(255,79,216,.06),
-          rgba(85,232,255,.00)
-        );
-      filter: blur(14px);
-      opacity:.50;
-      animation: slowspin 18s linear infinite;
-      pointer-events:none;
-      z-index: 2;
-    }
-    @keyframes slowspin{
-      from{ transform: translate(-50%,-50%) rotate(0deg); }
-      to{ transform: translate(-50%,-50%) rotate(360deg); }
-    }
-
-    .hub{
-      position:absolute;
-      left:50%; top:60%;
-      transform: translate(-50%, -50%);
-      width: 36%;
-      height: 36%;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 35% 25%, rgba(255,255,255,.16), transparent 50%),
-        radial-gradient(circle at 55% 55%, rgba(85,232,255,.20), transparent 58%),
-        radial-gradient(circle at 60% 70%, rgba(139,91,255,.18), transparent 60%),
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 50% 55%, rgba(77,235,255,.18), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(138,92,255,.14), transparent 65%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.14);
-      box-shadow:
-        0 18px 55px rgba(0,0,0,.55),
-        0 0 0 6px rgba(139,91,255,.12),
-        0 0 0 1px rgba(85,232,255,.18) inset;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      gap: 8px;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:8px;
       text-align:center;
-      user-select:none;
-      z-index: 6;
-      text-decoration:none;
-      color: var(--txt);
+      padding: 14px;
+      z-index: 3;
     }
-    .hub:hover{ filter: brightness(1.06); }
-    .hub .hubIcon{
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 35% 30%, rgba(255,255,255,.18), transparent 55%),
-        linear-gradient(135deg, rgba(255,79,216,.18), rgba(85,232,255,.14));
-      border: 1px solid rgba(255,255,255,.14);
-      display:flex; align-items:center; justify-content:center;
-      box-shadow: 0 14px 32px rgba(0,0,0,.35);
+    .core b{ font-size: 13px; letter-spacing:.35px; opacity:.95; }
+    .core .coreTitle{
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .25px;
     }
-    .hub b{ font-size: 14px; letter-spacing:.3px; }
-    .hub span{ font-size: 12px; color: rgba(234,240,255,.74); }
+    .core span{ font-size:12px; color: var(--muted); }
 
-    /* === 12 ITEMS: 360/12 = 30deg, perfect symmetry === */
-    .orbitWrap{
-      position:absolute;
-      left:50%;
-      top:58%;
-      transform: translate(-50%,-50%);
-      width: 74%;
-      height: 74%;
-      z-index: 5;
-      pointer-events:none;
-    }
-
-    .satLayer{
+    /* Orbit container rotates around true center */
+    .orbit{
       position:absolute;
       inset:0;
       transform-origin: 50% 50%;
-      animation: orbitSpin 54s linear infinite;
-      pointer-events:none;
+      animation: spin 22s linear infinite;
+      z-index: 2;
     }
-    @keyframes orbitSpin{
+    /* Slight second orbit (optional) for depth, slower reverse */
+    .orbit2{
+      position:absolute;
+      inset:0;
+      transform-origin: 50% 50%;
+      animation: spinReverse 34s linear infinite;
+      opacity: .98;
+      z-index: 1;
+    }
+
+    @keyframes spin{
       from{ transform: rotate(0deg); }
       to{ transform: rotate(360deg); }
     }
+    @keyframes spinReverse{
+      from{ transform: rotate(0deg); }
+      to{ transform: rotate(-360deg); }
+    }
 
+    /* Satellite = positioned by polar transform around center */
     .sat{
+      --a: 0deg;     /* angle */
+      --r: 168px;    /* radius */
       position:absolute;
       left:50%;
       top:50%;
-      width: 82px;
-      height: 82px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
+      width: 58px; height: 58px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      color: var(--text);
+      text-decoration:none;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      box-shadow:
-        0 16px 40px rgba(0,0,0,.45),
-        0 0 0 6px rgba(85,232,255,.05);
-      display:flex; align-items:center; justify-content:center;
-      text-decoration:none;
-      color: var(--txt);
       user-select:none;
-      transition: filter .15s ease, border-color .15s ease, background .15s ease;
-      pointer-events:auto;
-      --a: 0deg;
-      --rad: 166px; /* desktop radius */
+
+      /* Key: rotate around center, translate radius, then counter-rotate to keep upright */
       transform:
         rotate(var(--a))
-        translate(var(--rad))
-        rotate(calc(-1 * var(--a)));
+        translateX(var(--r))
+        rotate(calc(var(--a) * -1));
       transform-origin: 0 0;
+
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
     }
     .sat:hover{
-      filter: brightness(1.06);
-      border-color: rgba(255,255,255,.26);
-      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.10);
+      /* Keep same orbit math, just scale a bit */
+      transform:
+        rotate(var(--a))
+        translateX(var(--r))
+        rotate(calc(var(--a) * -1))
+        scale(1.04);
     }
 
-    @media (max-width: 1200px){
-      .sat{ --rad: 154px; }
+    .sat .icon{
+      width: 22px; height: 22px;
+      opacity: .96;
     }
-    @media (max-width: 520px){
-      .sat{ width: 72px; height: 72px; --rad: 128px; }
-    }
-
-    .sat .badge{
-      width: 40px; height: 40px;
-      border-radius: 999px;
-      display:flex; align-items:center; justify-content:center;
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 12px 26px rgba(0,0,0,.35);
-    }
-    .sat .lbl{
-      position:absolute;
-      left:50%;
-      bottom:-18px;
-      transform: translateX(-50%);
-      font-size: 12px;
-      color: rgba(234,240,255,.78);
+    .sat small{
+      font-size: 10px;
+      color: var(--muted2);
       letter-spacing:.2px;
-      white-space:nowrap;
-      text-shadow: 0 8px 20px rgba(0,0,0,.65);
-      opacity:.92;
+      line-height: 1;
+    }
+
+    /* Two radii (outer + inner) to mimic UI depth */
+    .sat.outer{ --r: 178px; }
+    .sat.inner{ --r: 132px; width:52px; height:52px; border-radius: 15px; }
+
+    /* Little top chips inside orbital panel */
+    .orbTop{
+      position:absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      z-index: 4;
       pointer-events:none;
     }
-    @media (max-width: 520px){
-      .sat .badge{ width: 36px; height: 36px; }
-      .sat .lbl{ font-size: 11px; bottom: -16px; }
+    .orbTop .left{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      pointer-events:none;
+    }
+    .orbTop .appName{
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing:.25px;
+      opacity:.95;
+    }
+    .orbTop .appSub{
+      font-size: 11px;
+      color: var(--muted2);
+      opacity:.95;
+    }
+    .orbTop .right{
+      display:flex;
+      gap:8px;
+      pointer-events:auto;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pillChip{
+      font-size: 11px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: rgba(234,240,255,.72);
+      text-decoration:none;
     }
 
-    .cDocs .badge{ background: rgba(85,232,255,.18); }
-    .cZip  .badge{ background: rgba(255,79,216,.16); }
-    .cApk  .badge{ background: rgba(46,242,166,.14); }
-    .cPc   .badge{ background: rgba(139,91,255,.16); }
-    .cMp3  .badge{ background: rgba(255,184,107,.14); }
-    .cVault .badge{ background: rgba(200,210,255,.12); }
-    .cStatus .badge{ background: rgba(85,232,255,.10); }
-    .cPhotos .badge{ background: rgba(139,91,255,.10); }
-    .cVideos .badge{ background: rgba(255,79,216,.10); }
-    .cMusic .badge{ background: rgba(255,184,107,.10); }
-    .cWa .badge{ background: rgba(46,242,166,.10); }
-    .cPlay .badge{ background: rgba(85,232,255,.10); }
-
     footer{
-      margin-top: 22px;
+      margin-top: 26px;
       color: var(--muted2);
       font-size: 12px;
       display:flex;
@@ -495,15 +414,14 @@
       padding: 12px 4px 0;
     }
     footer a{ color: var(--muted); text-decoration:none; }
-    footer a:hover{ color: var(--txt); }
+    footer a:hover{ color: var(--text); }
 
     @media (prefers-reduced-motion: reduce){
-      .chip,.btn,.sat{ transition:none !important; }
-      .energy,.satLayer{ animation:none !important; }
+      .orbit, .orbit2{ animation: none !important; }
+      .btn, .chip, .sat{ transition:none !important; }
     }
   </style>
 </head>
-
 <body>
   <div class="grid" aria-hidden="true"></div>
 
@@ -526,13 +444,13 @@
     </div>
 
     <section class="hero">
-      <!-- Left -->
+      <!-- Left: Copy + CTA -->
       <div class="panel">
         <div class="panel-inner">
           <div class="kicker">
-            <span class="tag cyan">Local Wi-Fi</span>
+            <span class="tag accent">Local Wi-Fi</span>
             <span class="tag">QR pairing</span>
-            <span class="tag lime">No cloud</span>
+            <span class="tag good">No cloud</span>
             <span class="tag">No accounts</span>
           </div>
 
@@ -544,13 +462,10 @@
           </p>
 
           <div class="ctaRow">
-            <a class="btn primary" id="btnPlay"
-               href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare"
-               rel="nofollow noopener" target="_blank">
+            <a class="btn primary" id="btnPlay" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" rel="nofollow noopener" target="_blank">
               <span class="dot" aria-hidden="true"></span>
               Open on Google Play
             </a>
-
             <a class="btn secondary" href="./index.html">
               <span class="dot" aria-hidden="true"></span>
               How it works
@@ -559,192 +474,212 @@
 
           <div class="mini">
             <span>Discovery keyword:</span>
-            <code>offline file transfer android pc</code>
+            <span><b>offline file transfer android pc</b></span>
+            <a href="./index.html">See documentation</a>
           </div>
 
           <div class="below">
-            <div class="fcard"><div>
-              <b>Offline-first</b>
-              <p>Transfers happen locally on your Wi-Fi/LAN. No internet required.</p>
-            </div></div>
-            <div class="fcard"><div>
-              <b>Fast pairing</b>
-              <p>Scan a QR code to connect and start sending in seconds.</p>
-            </div></div>
-            <div class="fcard"><div>
-              <b>Privacy by design</b>
-              <p>Your files stay under your control. No cloud uploads.</p>
-            </div></div>
+            <div class="card">
+              <div>
+                <b>Offline-first</b>
+                <p>Transfers happen locally on your Wi-Fi/LAN. No internet required.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div>
+                <b>Fast pairing</b>
+                <p>Scan a QR code to connect and start sending in seconds.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div>
+                <b>Privacy by design</b>
+                <p>Your files stay under your control. No cloud uploads.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Right -->
-      <div class="panel orbitalPanel" aria-label="Orbital menu preview">
-        <div class="panel-inner">
-          <div class="orb">
-            <div class="orbStage" role="img" aria-label="Orbital hub with quick actions">
-              <div class="orbGlow" aria-hidden="true"></div>
-
-              <div class="orbCaption">
-                <div class="orbTitle">
-                  <b>Ultimatum Flash Share</b>
-                  <span>Offline. Fast. Secure.</span>
-                </div>
-                <div class="orbMini" aria-hidden="true">
-                  <span class="pill">Android ↔ Android</span>
-                  <span class="pill">Android ↔ PC</span>
-                </div>
+      <!-- Right: Orbital UI module -->
+      <div class="panel orbital" aria-label="Orbital quick actions">
+        <div class="panel-inner" style="position:relative; width:100%;">
+          <div class="orb-wrap" aria-label="Orbital hub">
+            <div class="orbTop" aria-hidden="true">
+              <div class="left">
+                <div class="appName">Ultimatum Flash Share</div>
+                <div class="appSub">Offline. Fast. Secure.</div>
               </div>
+              <div class="right">
+                <span class="pillChip">Android ↔ Android</span>
+                <span class="pillChip">Android ↔ PC</span>
+              </div>
+            </div>
 
-              <div class="energy" aria-hidden="true"></div>
-              <div class="ringB" aria-hidden="true"></div>
-              <div class="ringA" aria-hidden="true"></div>
+            <div class="ring2" aria-hidden="true"></div>
+            <div class="ring1" aria-hidden="true"></div>
 
-              <a class="hub" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare"
-                 target="_blank" rel="nofollow noopener" title="Open on Google Play">
-                <div class="hubIcon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 2v6m0 8v6M2 12h6m8 0h6" stroke="rgba(234,240,255,.85)" stroke-width="1.6" stroke-linecap="round"/>
-                    <path d="M12 7.5a4.5 4.5 0 1 1 0 9a4.5 4.5 0 0 1 0-9Z" stroke="rgba(234,240,255,.85)" stroke-width="1.6"/>
-                  </svg>
-                </div>
-                <b>Downloads</b>
-                <span>WA Hub</span>
+            <div class="core" aria-label="Core">
+              <div class="coreTitle">Downloads</div>
+              <b>WA Hub</b>
+              <span>Orbital shortcuts</span>
+            </div>
+
+            <!-- OUTER ORBIT (12 items, perfectly even angles) -->
+            <div class="orbit" aria-hidden="true">
+              <!-- Angles: 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330 -->
+              <a class="sat outer" style="--a:0deg" href="./index.html" title="Docs">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M6 18h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>Docs</small>
               </a>
 
-              <div class="orbitWrap">
-                <div class="satLayer">
-                  <!-- 12 items => 30deg each -->
-                  <a class="sat cMusic" style="--a: 0deg" href="./index.html" title="Music">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 18V6l12-2v12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M7 20a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
-                        <path d="M19 18a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">Music</div>
-                  </a>
+              <a class="sat outer" style="--a:30deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Google Play">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5v14l11-7L8 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <small>Play</small>
+              </a>
 
-                  <a class="sat cApk" style="--a: 30deg" href="./index.html" title="APK">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M8 6l-1-2M16 6l1-2" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                        <path d="M7 8h10l-1 12H8L7 8Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M9 12v4M15 12v4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">APK</div>
-                  </a>
+              <a class="sat outer" style="--a:60deg" href="./privacy.html" title="Privacy">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3l8 4v6c0 5-3.5 9-8 8-4.5 1-8-3-8-8V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9.5 12l1.7 1.7L15 9.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <small>Privacy</small>
+              </a>
 
-                  <a class="sat cZip" style="--a: 60deg" href="./index.html" title="ZIP">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M7 3h10v18H7V3Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M10 7h4M10 11h4M10 15h4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">ZIP</div>
-                  </a>
+              <a class="sat outer" style="--a:90deg" href="./terms.html" title="Terms">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h7l3 3v15H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M14 3v4h4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 11h6M9 14h6M9 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>Terms</small>
+              </a>
 
-                  <a class="sat cDocs" style="--a: 90deg" href="./index.html" title="Docs">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M6 18h12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">Docs</div>
-                  </a>
+              <a class="sat outer" style="--a:120deg" href="./contact.html" title="Support">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <small>Support</small>
+              </a>
 
-                  <a class="sat cPc" style="--a: 120deg" href="./index.html" title="PC">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M4 5h16v10H4V5Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M8 19h8" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                        <path d="M12 15v4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">PC</div>
-                  </a>
+              <a class="sat outer" style="--a:150deg" href="./index.html" title="How it works">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <small>Flow</small>
+              </a>
 
-                  <a class="sat cStatus" style="--a: 150deg" href="./index.html" title="Status">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M4 13l4-4 4 4 8-8" stroke="rgba(234,240,255,.90)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M4 20h16" stroke="rgba(234,240,255,.70)" stroke-width="1.6" stroke-linecap="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">Status</div>
-                  </a>
+              <a class="sat outer" style="--a:180deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Android ↔ PC">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16v10H4V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M8 20h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M12 16v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>PC</small>
+              </a>
 
-                  <a class="sat cMp3" style="--a: 180deg" href="./index.html" title="MP3">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 18V6l12-2v12" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M7 20a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">MP3</div>
-                  </a>
+              <a class="sat outer" style="--a:210deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="ZIP">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h10v18H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M10 7h4M10 10h4M10 13h4M10 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>ZIP</small>
+              </a>
 
-                  <a class="sat cVault" style="--a: 210deg" href="./privacy.html" title="Vault">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                        <path d="M6 11h12v10H6V11Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">Vault</div>
-                  </a>
+              <a class="sat outer" style="--a:240deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="APK">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 7h8v14H8V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M10 3h4v4h-4V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M10 11h4M10 15h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>APK</small>
+              </a>
 
-                  <a class="sat cPhotos" style="--a: 240deg" href="./index.html" title="Photos">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M4 7h16v12H4V7Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M8 11l2.5 3 2-2 3.5 4" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M9 10.5a.8.8 0 1 1 0-1.6a.8.8 0 0 1 0 1.6Z" fill="rgba(234,240,255,.90)"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">Photos</div>
-                  </a>
+              <a class="sat outer" style="--a:270deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Music">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M19 16a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M11 16V6l10-2v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <small>Music</small>
+              </a>
 
-                  <a class="sat cVideos" style="--a: 270deg" href="./index.html" title="Videos">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M4 7h12v10H4V7Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M16 10l4-2v8l-4-2v-4Z" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">Videos</div>
-                  </a>
+              <a class="sat outer" style="--a:300deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Videos">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h12v10H4V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M16 10l4-2v8l-4-2v-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <small>Videos</small>
+              </a>
 
-                  <a class="sat cWa" style="--a: 300deg" href="./index.html" title="WA Hub">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 21c5 0 9-4 9-9s-4-9-9-9-9 4-9 9c0 1.6.4 3.1 1.1 4.4L3 21l4.8-1.1C9 20.6 10.5 21 12 21Z"
-                              stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M9.2 9.6c.2 2 2.6 4.2 4.6 4.6" stroke="rgba(234,240,255,.90)" stroke-width="1.7" stroke-linecap="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">WA Hub</div>
-                  </a>
-
-                  <a class="sat cPlay" style="--a: 330deg"
-                     href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare"
-                     target="_blank" rel="nofollow noopener" title="Google Play">
-                    <div class="badge" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M8 5v14l11-7L8 5Z" stroke="rgba(234,240,255,.90)" stroke-width="1.8" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                    <div class="lbl">Play</div>
-                  </a>
-                </div>
-              </div>
-
+              <a class="sat outer" style="--a:330deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Photos">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M8 11l2 2 4-4 4 6H6l2-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <small>Photos</small>
+              </a>
             </div>
+
+            <!-- INNER ORBIT (optional depth, smaller tiles) -->
+            <div class="orbit2" aria-hidden="true">
+              <a class="sat inner" style="--a:15deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Status">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 19V5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M10 19V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M14 19V12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M18 19V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>Status</small>
+              </a>
+
+              <a class="sat inner" style="--a:75deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="MP3">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M15 16V6l6-2v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <small>MP3</small>
+              </a>
+
+              <a class="sat inner" style="--a:135deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Vault">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M6 11h12v10H6V11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <small>Vault</small>
+              </a>
+
+              <a class="sat inner" style="--a:195deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="WA Hub">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21a8.5 8.5 0 1 0-7.8-5.1L3 21l5.2-1.2A8.5 8.5 0 0 0 12 21Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9.5 10.5c.7 2 2 3.3 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>WA</small>
+              </a>
+
+              <a class="sat inner" style="--a:255deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="Docs">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h7l3 3v15H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 11h6M9 14h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>Docs</small>
+              </a>
+
+              <a class="sat inner" style="--a:315deg" href="https://play.google.com/store/apps/details?id=com.ultimatum.flashshare" target="_blank" rel="nofollow noopener" title="PC">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16v10H4V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 20h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <small>PC</small>
+              </a>
+            </div>
+
           </div>
         </div>
       </div>
