@@ -1,2 +1,2 @@
-# ultimatum-flash
+# ultimatum-share
 Offline file transfer app using local Wi-Fi and QR pairing.
